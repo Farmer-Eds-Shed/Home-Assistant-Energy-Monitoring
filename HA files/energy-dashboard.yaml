@@ -1,0 +1,30 @@
+  - theme: Backend-selected
+    icon: mdi:lightning-bolt
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.daily_energy_peak
+          - entity: sensor.daily_esb_cost_peak
+          - entity: sensor.daily_energy_offpeak
+            name: Daily Energy day
+          - entity: sensor.daily_esb_cost_day
+          - entity: sensor.daily_energy_night
+          - entity: sensor.daily_esb_cost_night
+      - type: energy-usage-graph
+      - type: history-graph
+        entities:
+          - entity: sensor.energy_meter_81_1
+        title: Watts
+        hours_to_show: 24
+      - type: gauge
+        entity: sensor.energy_meter_81_1
+        max: 6000
+        needle: false
+      - type: entities
+        entities:
+          - entity: sensor.co2_signal_co2_intensity
+            name: CO2 intensity
+          - entity: sensor.co2_signal_grid_fossil_fuel_percentage
+            name: Grid fossil fuel percentage
+        title: CO2 signal
