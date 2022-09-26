@@ -1,0 +1,33 @@
+# --------------------Automation to set time of day tariff----------------------------------
+- id: '1664085561543'
+  alias: ESB Tarrifs
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00:00
+    variables:
+      tariff: offpeak
+  - platform: time
+    at: '17:00:00'
+    variables:
+      tariff: peak
+  - platform: time
+    at: '19:00:00'
+    variables:
+      tariff: offpeak
+  - platform: time
+    at: 00:00:00
+    variables:
+      tariff: night
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.daily_energy
+    data:
+      option: '{{ tariff }}'
+  - service: select.select_option
+    target:
+      entity_id: select.monthly_energy
+    data:
+      option: '{{ tariff }}'
+  mode: single
