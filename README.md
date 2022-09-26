@@ -6,7 +6,7 @@ Energy/cost Monitoring
 Adafruit Feather LoRa32u4
 https://www.adafruit.com/product/3078
 
-LM393 light sensor board
+LM393 light sensor board - When using the LM393 light sensor board and WATTS reading may be off, add a 0.1uF capacitor between the DO and GND to fix.
 
 ## Firmware Used:
 https://github.com/Farmer-Eds-Shed/MySensors_LoRa_RFM95/tree/main/Utility%20Meter/Pulse%20Meter
