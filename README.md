@@ -1,6 +1,8 @@
 # Home-Assistant-Energy-Monitoring
 Energy/cost Monitoring
 
+![image](https://github.com/Farmer-Eds-Shed/Home-Assistant-Energy-Monitoring/blob/main/image.png?raw=true)
+
 
 ## Hardware used:
 Adafruit Feather LoRa32u4
