@@ -1,10 +1,10 @@
-# --------------------Automation to set time of day tariff----------------------------------
+#------------------------------WeekDay Tariff---------------------------------
 - id: '1664085561543'
-  alias: ESB Tarrifs
+  alias: ESB Tariffs
   description: ''
   trigger:
   - platform: time
-    at: 09:00:00
+    at: 08:00:00
     variables:
       tariff: offpeak
   - platform: time
@@ -16,9 +16,87 @@
     variables:
       tariff: offpeak
   - platform: time
-    at: 00:00:00
+    at: '23:00:00'
     variables:
       tariff: night
+  condition:
+  - condition: time
+    before: 00:00:00
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.daily_energy
+    data:
+      option: '{{ tariff }}'
+  - service: select.select_option
+    target:
+      entity_id: select.monthly_energy
+    data:
+      option: '{{ tariff }}'
+  mode: single
+#------------------------------Saturday Tariff---------------------------------
+- id: '1665583251018'
+  alias: ESB Tarrif Saturday
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+    variables:
+      tariff: offpeak
+  - platform: time
+    at: 09:00:00
+    variables:
+      tariff: free
+  - platform: time
+    at: '17:00:00'
+    variables:
+      tariff: offpeak
+  - platform: time
+    at: '23:00:00'
+    variables:
+      tariff: night
+  condition:
+  - condition: time
+    before: 00:00:00
+    weekday:
+    - sat
+  action:
+  - service: select.select_option
+    target:
+      entity_id: select.daily_energy
+    data:
+      option: '{{ tariff }}'
+  - service: select.select_option
+    target:
+      entity_id: select.monthly_energy
+    data:
+      option: '{{ tariff }}'
+  mode: single
+#------------------------------Sunday Tariff---------------------------------
+- id: '1665584504520'
+  alias: ESB Tarrif Sunday
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:00:00
+    variables:
+      tariff: offpeak
+  - platform: time
+    at: '23:00:00'
+    variables:
+      tariff: night
+  condition:
+  - condition: time
+    before: 00:00:00
+    weekday:
+    - sat
+    after: 00:00:00
   action:
   - service: select.select_option
     target:
