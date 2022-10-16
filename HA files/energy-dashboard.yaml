@@ -1,16 +1,32 @@
   - theme: Backend-selected
     icon: mdi:lightning-bolt
+    title: Energy
     badges: []
     cards:
-      - type: entities
-        entities:
-          - entity: sensor.daily_energy_peak
-          - entity: sensor.daily_esb_cost_peak
-          - entity: sensor.daily_energy_offpeak
-            name: Daily Energy day
-          - entity: sensor.daily_esb_cost_day
-          - entity: sensor.daily_energy_night
-          - entity: sensor.daily_esb_cost_night
+      - type: vertical-stack
+        cards:
+          - type: entity
+            entity: sensor.time
+          - type: entity
+            entity: select.daily_energy
+            icon: mdi:meter-electric-outline
+            name: Current Tariff
+          - type: entities
+            entities:
+              - entity: sensor.daily_energy_peak
+                name: Peak
+              - entity: sensor.daily_esb_cost_peak
+                name: Peak @42.8c
+              - entity: sensor.daily_energy_offpeak
+                name: Day
+              - entity: sensor.daily_esb_cost_day
+                name: Day @34.8c
+              - entity: sensor.daily_energy_night
+                name: Night
+              - entity: sensor.daily_esb_cost_night
+                name: Night @25.6c
+              - entity: sensor.daily_energy_free
+                name: Saturday Free Time
       - type: energy-usage-graph
       - type: history-graph
         entities:
@@ -21,6 +37,10 @@
         entity: sensor.energy_meter_81_1
         max: 6000
         needle: false
+        severity:
+          green: 0
+          yellow: 500
+          red: 1500
       - type: entities
         entities:
           - entity: sensor.co2_signal_co2_intensity
